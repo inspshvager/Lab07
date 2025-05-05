@@ -1,15 +1,42 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
+import static java.lang.System.exit;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Scanner input = new Scanner(System.in);
+        AccountManager accountManager = new AccountManager();
+        while(true){
+            System.out.println("""
+                    1. Dodaj użytkownika,\
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+                    2. Wyświetl konta\
+                    
+                    3. Edytuj konto\
+                    
+                    4. Usuń konto\
+                    
+                    5. Wyjdź""");
+            switch (input.nextInt()){
+                case 1:
+                    accountManager.createAccount();
+                    break;
+                case 2:
+                    accountManager.viewAccounts();
+                    break;
+                case 3:
+                    System.out.println("Podaj id użytkownika do zaktualizownia");
+                    accountManager.updateAccounts(input.nextInt());
+                    break;
+                case 4:
+                    System.out.println("Podaj id użytkownika do usunięcia");
+                    accountManager.deleteAccounts(input.nextInt());
+                    break;
+                case 5:
+                    exit(0);
+                default:
+                    break;
+            }
         }
     }
 }
